@@ -4,9 +4,14 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   publish-image:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/setup-go@v5
         with:
