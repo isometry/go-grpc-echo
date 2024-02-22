@@ -9,5 +9,5 @@ kubectl create deployment echo --image=ghcr.io/isometry/go-grpc-echo:latest --po
 kubectl create service loadbalancer echo --tcp=8080:8080
 
 grpcurl -plaintext localhost:8080 describe
-grpcurl -plaintext -d  '{"message": "Hello, World"}' localhost:8080 api.v1.Echo/Echo
+grpcurl -plaintext -d  '{"message": "Hello, World"}' localhost:8080 rpc.Echo/Request
 ```

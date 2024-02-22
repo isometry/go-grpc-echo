@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package api.v1;
+package rpc;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/isometry/go-grpc-echo/api_v1";
+option go_package = "github.com/isometry/go-grpc-echo/rpc";
 
 service Echo {
-    rpc Echo(EchoRequest) returns (EchoResponse) {}
+    rpc Request(EchoRequest) returns (EchoResponse) {}
 }
 
 message EchoRequest {

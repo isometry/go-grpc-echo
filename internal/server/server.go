@@ -4,18 +4,18 @@ import (
 	"context"
 	"time"
 
-	api "github.com/isometry/go-grpc-echo/api/v1"
+	"github.com/isometry/go-grpc-echo/rpc"
 
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type grpcServer struct {
-	api.UnimplementedEchoServer
+	rpc.UnimplementedEchoServer
 }
 
-func (s *grpcServer) Echo(ctx context.Context, req *api.EchoRequest) (*api.EchoResponse, error) {
-	response := api.EchoResponse{
+func (s *grpcServer) Request(ctx context.Context, req *rpc.EchoRequest) (*rpc.EchoResponse, error) {
+	response := rpc.EchoResponse{
 		Message:   req.Message,
 		Timestamp: timestamppb.New(time.Now()),
 	}
@@ -25,6 +25,6 @@ func (s *grpcServer) Echo(ctx context.Context, req *api.EchoRequest) (*api.EchoR
 func NewGRPCServer() *grpc.Server {
 	gsrv := grpc.NewServer()
 	srv := grpcServer{}
-	api.RegisterEchoServer(gsrv, &srv)
+	rpc.RegisterEchoServer(gsrv, &srv)
 	return gsrv
 }
